@@ -1,124 +1,221 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>FESTIMO — Pretty Code Timer</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Geist:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>FESTIMO — Code Timer & AI Copilot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Geist:wght@400;600;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="mesh"></div>
-<nav>
-  <div class="brand"><div class="logo">✦</div> FESTIMO <span>CODE TIMER</span></div>
-  <div class="nav-pills"><span>● 4h ritual</span><span>● Lagos</span></div>
-  <div class="nav-right"><div id="timer">04:00:00</div><button id="btn">START FLOW</button></div>
-</nav>
+  <div class="mesh"></div>
 
-<div class="hero-cards">
-  <div class="card big">
-    <div class="eyebrow">NOW IN FLOW</div>
-    <h1>Code for four<br><span>hours with me —</span><br>lets goo</h1>
-    <div class="progress-wrap"><div id="progress"></div></div>
-    <div class="stats"><div><b>01</b> I CODE</div><div><b>02</b> I BUILD</div><div><b>03</b> I LEARN</div></div>
-  </div>
-  <div class="card color c1"><h3>Deep Work</h3><p>No tweets. No tabs. Just you and the lab.</p><div class="icon">🎧</div></div>
-  <div class="card color c2"><h3>Live Preview</h3><p>HTML + CSS + JS run instantly as you type.</p><div class="icon">⚡️</div></div>
-  <div class="card color c3"><h3>AI Co-pilot</h3><p>Ask to make it neon, 3d, premium — it edits.</p><div class="icon">🤖</div></div>
-</div>
-
-<div class="lab" id="lab">
-  <div class="lab-header">
-    <div class="dots"><span></span><span></span><span></span><b>festimo.lab</b></div>
-    <div class="tabs">
-      <button class="tab active" data-tab="html">HTML</button>
-      <button class="tab" data-tab="css">CSS</button>
-      <button class="tab" data-tab="js">JS</button>
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="brand">
+      <div class="logo">✦</div> FESTIMO <span>CODE TIMER & AI</span>
     </div>
-    <div class="lab-actions"><label><input id="autorun" type="checkbox" checked> auto</label><button id="run">▶ Run</button><button id="download">Export</button><button id="theme">◐</button></div>
-  </div>
-  <div class="lab-body">
-    <div class="editor">
+
+    <!-- PAGE VIEW NAVIGATION -->
+    <div class="nav-pages">
+      <button class="nav-tab active" data-page="page-lab">⏱️ Lab & Timer</button>
+      <button class="nav-tab" data-page="page-ai">🤖 AI Copilot Studio</button>
+    </div>
+
+    <div class="nav-right">
+      <div id="timer">04:00:00</div>
+      <button id="btn">START FLOW</button>
+    </div>
+  </nav>
+
+  <!-- =================================================================== -->
+  <!-- PAGE 1: TIMER & LAB WORKSPACE -->
+  <!-- =================================================================== -->
+  <main id="page-lab" class="page-view active">
+    <!-- HERO / STATS CARDS -->
+    <div class="hero-cards">
+      <div class="card big">
+        <div class="eyebrow">NOW IN FLOW • LAGOS</div>
+        <h1>04:00:00</h1>
+        <div class="hero-subtext">CODE FOR FOUR HOURS WITH ME — LETS GOO</div>
+        
+        <div class="progress-wrap"><div id="progress"></div></div>
+
+        <!-- Glow Accent Stat Boxes -->
+        <div class="stats">
+          <div class="stat-box s1"><b>BOX 1:</b> I CODE</div>
+          <div class="stat-box s2"><b>BOX 2:</b> I BUILD</div>
+          <div class="stat-box s3"><b>BOX 3:</b> I LEARN</div>
+        </div>
+      </div>
+
+      <!-- Feature Highlight Cards -->
+      <div class="card color c1">
+        <h3>Deep Work Ritual</h3>
+        <p>No tweets. No tabs. Just focus and code.</p>
+        <div class="icon">🎧</div>
+      </div>
+      <div class="card color c2">
+        <h3>Live Preview</h3>
+        <p>HTML + CSS + JS execute live as you type.</p>
+        <div class="icon">⚡️</div>
+      </div>
+      <div class="card color c3">
+        <h3>AI Assistant</h3>
+        <p>Ask Copilot to build layouts, fix bugs & themes.</p>
+        <div class="icon">🤖</div>
+      </div>
+    </div>
+
+    <!-- TASK RITUAL CHECKLIST -->
+    <section class="checklist-section">
+      <div class="section-title">✦ 4-HOUR RITUAL GOALS</div>
+      <div class="tasks-grid">
+        <label class="task-item"><input type="checkbox"> Setup HTML structure & base styles</label>
+        <label class="task-item"><input type="checkbox"> Build key layout components</label>
+        <label class="task-item"><input type="checkbox"> Implement interactive JavaScript logic</label>
+        <label class="task-item"><input type="checkbox"> Test responsiveness & polish UI</label>
+      </div>
+    </section>
+
+    <!-- LAB CODE EDITOR SECTION -->
+    <div class="lab" id="lab">
+      <div class="lab-header">
+        <div class="dots"><span></span><span></span><span></span><b>festimo.lab</b></div>
+        <div class="tabs">
+          <button class="tab active" data-tab="html">HTML</button>
+          <button class="tab" data-tab="css">CSS</button>
+          <button class="tab" data-tab="js">JS</button>
+        </div>
+        <div class="lab-actions">
+          <label><input id="autorun" type="checkbox" checked> Auto</label>
+          <button id="run">▶ Run</button>
+          <button id="download">Export</button>
+          <button id="theme">◐ Theme</button>
+        </div>
+      </div>
+
+      <div class="lab-body">
+        <!-- Editor Left Side -->
+        <div class="editor">
 <textarea id="html" class="code active"><div class="box">
   <div class="pill">DAY 12 • 4H LOCKED</div>
   <h2>You've got 4 hours.<br>Make them pretty.</h2>
   <p>Build something that makes you smile when you refresh.</p>
   <button id="btn2">Surprise me ✨</button>
 </div></textarea>
+
 <textarea id="css" class="code">*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Geist',system-ui;background:#fff7ed;color:#1a1a1a;min-height:100vh;display:grid;place-items:center;padding:30px}
-.box{width:420px;background:linear-gradient(180deg, #fff, #fffbeb);border:1px solid #fde68a;padding:32px;border-radius:28px;box-shadow:0 20px 50px #f59e0b22, inset 0 1px 0 #fff}
-.pill{font-size:10px;letter-spacing:2px;background:#111;color:#fff;padding:6px 10px;border-radius:100px;display:inline-block;margin-bottom:18px}
-h2{font-family:'Fraunces',serif;font-size:34px;line-height:0.95;letter-spacing:-1px;margin-bottom:12px}
-p{opacity:0.6;line-height:1.5;margin-bottom:18px}
-#btn2{background:#111;color:#fff;border:none;padding:12px 20px;border-radius:100px;font-weight:800;cursor:pointer;transition:0.2s}
-#btn2:hover{transform:translateY(-2px) scale(1.02)}</textarea>
+body{font-family:'Geist',system-ui;background:#05070a;color:#fff;min-height:100vh;display:grid;place-items:center;padding:30px}
+.box{width:420px;background:rgba(255,255,255,0.04);border:1px solid rgba(0,255,135,0.3);padding:32px;border-radius:28px;box-shadow:0 20px 50px rgba(0,255,135,0.1);backdrop-filter:blur(10px)}
+.pill{font-size:10px;letter-spacing:2px;background:#00ff87;color:#000;padding:6px 10px;border-radius:100px;display:inline-block;margin-bottom:18px;font-weight:700}
+h2{font-family:'Fraunces',serif;font-size:34px;line-height:1;margin-bottom:12px}
+p{opacity:0.7;line-height:1.5;margin-bottom:18px;font-size:0.9rem}
+#btn2{background:#00ff87;color:#000;border:none;padding:12px 24px;border-radius:100px;font-weight:800;cursor:pointer;transition:0.2s;box-shadow:0 0 15px rgba(0,255,135,0.4)}
+#btn2:hover{transform:scale(1.04)}</textarea>
+
 <textarea id="js" class="code">const colors = [
-  'linear-gradient(135deg, #fef3c7, #fde68a)',
-  'linear-gradient(135deg, #fce7f3, #fbcfe8)',
-  'linear-gradient(135deg, #ddd6fe, #c4b5fd)',
-  'linear-gradient(135deg, #a7f3d0, #6ee7b7)'
+  'rgba(0, 255, 135, 0.2)',
+  'rgba(59, 130, 246, 0.2)',
+  'rgba(168, 85, 247, 0.2)'
 ];
 let i = 0;
 document.getElementById('btn2').onclick = () => {
-  document.querySelector('.box').style.background = colors[i % colors.length];
-  document.querySelector('h2').innerText = "Ooo pretty! Keep going 🎨";
-  console.log("Color switched to", i);
+  document.querySelector('.box').style.borderColor = colors[i % colors.length];
+  document.querySelector('h2').innerText = "Keep locked in! 🚀";
+  console.log("Accent border switched!");
   i++;
 }</textarea>
-      <div class="console"><span>console</span><div id="logs">> ready to make it pretty...</div></div>
-    </div>
-    <div class="preview-side">
-      <iframe id="preview"></iframe>
-      <div class="ai-box">
-        <div class="ai-top">✦ ASK AI <span>it edits your code</span></div>
-        <div id="aiChat"><div class="ai-msg">Hey Festim! Tell me vibe: <b>sunset, ocean, bubblegum, forest, midnight, barbie</b> — I will recolor everything pretty.</div></div>
-        <div class="ai-input"><input id="aiPrompt" placeholder="make it sunset gradient, add confetti, bubblegum theme..."><button id="aiSend">↗</button></div>
-        <div class="quick"><button data-c="sunset">🌅 Sunset</button><button data-c="ocean">🌊 Ocean</button><button data-c="bubblegum">🍬 Bubblegum</button><button data-c="forest">🌿 Forest</button><button data-c="midnight">🌌 Midnight</button><button data-c="barbie">💅 Barbie</button></div>
+          <div class="console">
+            <span>CONSOLE LOGS</span>
+            <div id="logs">> Environment initialised.</div>
+          </div>
+        </div>
+
+        <!-- Preview Right Side -->
+        <div class="preview-side">
+          <div class="preview-bar">
+            <span>Live Output</span>
+            <button id="fullscreen-btn" title="Toggle full preview">⛶ Fullscreen</button>
+          </div>
+          <iframe id="preview"></iframe>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </main>
 
-<footer>Built with love in Lagos • 4h everyday • <span id="history">No sessions yet</span></footer>
-<audio id="ding" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
-<script>
-let TOTAL=4*60*60, time=localStorage.getItem('timeLeft')?parseInt(localStorage.getItem('timeLeft')):TOTAL;
-let timerEl=document.getElementById('timer'), progress=document.getElementById('progress'), btn=document.getElementById('btn'), ding=document.getElementById('ding');
-let running=false, interval;
-function render(){ let h=Math.floor(time/3600),m=Math.floor((time%3600)/60),s=time%60; timerEl.innerText=String(h).padStart(2,'0')+":"+String(m).padStart(2,'0')+":"+String(s).padStart(2,'0'); progress.style.width=((TOTAL-time)/TOTAL*100)+"%"; localStorage.setItem('timeLeft',time); } render();
-btn.onclick=()=>{ if(!running){ running=true; btn.innerText="⏸ IN FLOW"; btn.style.background="#111"; btn.style.color="#fff"; interval=setInterval(()=>{ time--; render(); if(time<=0){ clearInterval(interval); running=false; ding.play(); btn.innerText="DONE 🎉"; } },1000); } else{ running=false; btn.innerText="START FLOW"; clearInterval(interval); } };
+  <!-- =================================================================== -->
+  <!-- PAGE 2: DEDICATED AI COPILOT STUDIO PAGE -->
+  <!-- =================================================================== -->
+  <main id="page-ai" class="page-view">
+    <div class="ai-studio-container">
+      
+      <!-- AI Sidebar / Presets -->
+      <aside class="ai-sidebar">
+        <div class="ai-brand-header">
+          <h2>✦ AI Copilot</h2>
+          <p>Your intelligent coding pair programmer</p>
+        </div>
 
-let htmlEl=document.getElementById('html'), cssEl=document.getElementById('css'), jsEl=document.getElementById('js'), preview=document.getElementById('preview'), logs=document.getElementById('logs');
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); document.querySelectorAll('.code').forEach(c=>c.classList.remove('active')); t.classList.add('active'); document.getElementById(t.dataset.tab).classList.add('active'); });
-function run(){
-  preview.srcdoc=`<style>${cssEl.value}<\/style>${htmlEl.value}<script>const _l=console.log; console.log=(...a)=>parent.postMessage({type:'log',msg:a.join(' ')},'*'); window.onerror=e=>parent.postMessage({type:'log',msg:'✕ '+e},'*');<\/script><script>${jsEl.value}<\/script>`;
-  localStorage.setItem('lab_html',htmlEl.value); localStorage.setItem('lab_css',cssEl.value); localStorage.setItem('lab_js',jsEl.value);
-}
-if(localStorage.getItem('lab_html')){ htmlEl.value=localStorage.getItem('lab_html'); cssEl.value=localStorage.getItem('lab_css'); jsEl.value=localStorage.getItem('lab_js'); }
-run(); document.getElementById('run').onclick=run; document.getElementById('autorun').onchange=e=>{ if(e.target.checked) run(); };
-[htmlEl][cssEl][jsEl].forEach(el=>el.addEventListener('input',()=>{ if(document.getElementById('autorun').checked) run(); }));
-window.addEventListener('message',e=>{ if(e.data.type==='log'){ logs.innerHTML+=`<div>> ${e.data.msg}</div>`; } });
+        <div class="ai-section-title">QUICK GENERATORS</div>
+        <div class="prompt-presets">
+          <button class="preset-btn" data-prompt="Create a sleek neon glassmorphism hero card component">✨ Neon Hero Card</button>
+          <button class="preset-btn" data-prompt="Build a responsive pricing table with monthly yearly toggle">💳 Pricing Table</button>
+          <button class="preset-btn" data-prompt="Generate an interactive task kanban board">📋 Kanban Board</button>
+          <button class="preset-btn" data-prompt="Make a dark Cyberpunk theme styling with glowing neon text">🌃 Cyberpunk Style</button>
+          <button class="preset-btn" data-prompt="Write a JS countdown timer function">⏱️ Countdown JS</button>
+        </div>
 
-let chat=document.getElementById('aiChat'), prompt=document.getElementById('aiPrompt');
-function addMsg(t,w='ai'){ let d=document.createElement('div'); d.className=w==='user'?'u-msg':'ai-msg'; d.innerHTML=t; chat.appendChild(d); chat.scrollTop=chat.scrollHeight; }
-function recolor(theme){
-  let themes={
-    sunset: {bg:'#fff7ed', card:'linear-gradient(180deg, #fff, #ffedd5)', border:'#fed7aa', shadow:'#fb923c33', btn:'#ea580c'},
-    ocean: {bg:'#ecfeff', card:'linear-gradient(180deg, #fff, #cffafe)', border:'#a5f3fc', shadow:'#06b6d433', btn:'#0891b2'},
-    bubblegum: {bg:'#fdf2f8', card:'linear-gradient(180deg, #fff, #fce7f3)', border:'#fbcfe8', shadow:'#ec489933', btn:'#db2777'},
-    forest: {bg:'#f0fdf4', card:'linear-gradient(180deg, #fff, #dcfce7)', border:'#bbf7d0', shadow:'#22c55e33', btn:'#16a34a'},
-    midnight: {bg:'#0a0a0a', card:'linear-gradient(180deg, #1a1a1a, #111)', border:'#2a2a2a', shadow:'#000', btn:'#fff', text:'#fff'},
-    barbie: {bg:'#fff1f2', card:'linear-gradient(135deg, #fff, #ffe4e6)', border:'#fecdd3', shadow:'#f43f5e33', btn:'#e11d48'}
-  };
-  let t=themes[theme]; if(!t) return;
-  let css=`*{margin:0;padding:0;box-sizing:border-box} body{font-family:'Geist',system-ui;background:${t.bg};color:${t.text||'#1a1a1a'};min-height:100vh;display:grid;place-items:center;padding:30px;transition:0.5s}.box{width:420px;background:${t.card};border:1px solid ${t.border};padding:32px;border-radius:28px;box-shadow:0 20px 50px ${t.shadow}, inset 0 1px 0 #fff}.pill{font-size:10px;letter-spacing:2px;background:${t.btn};color:${t.text?'#000':'#fff'};padding:6px 10px;border-radius:100px;display:inline-block;margin-bottom:18px} h2{font-family:'Fraunces',serif;font-size:34px;line-height:0.95;letter-spacing:-1px;margin-bottom:12px} p{opacity:0.6;line-height:1.5;margin-bottom:18px} #btn2{background:${t.btn};color:${t.text?'#000':'#fff'};border:none;padding:12px 20px;border-radius:100px;font-weight:800;cursor:pointer}`;
-  cssEl.value=css; run(); addMsg(`Switched to <b>${theme}</b> theme! So pretty 🎨`, 'ai');
-}
-document.getElementById('aiSend').onclick=()=>{ let q=prompt.value.toLowerCase(); if(!q) return; addMsg(prompt.value,'user'); let found=['sunset','ocean','bubblegum','forest','midnight','barbie'].find(x=>q.includes(x)); if(found) recolor(found); else if(q.includes('confetti')){ jsEl.value+='\nfor(let i=0;i<20;i++){let d=document.createElement("div");d.innerText="🎉";d.style.position="fixed";d.style.left=Math.random()*100+"%";d.style.top="-20px";d.style.animation=`fall ${2+Math.random()*2}s linear`;document.body.appendChild(d);} let s=document.createElement("style");s.innerHTML="@keyframes fall{to{transform:translateY(100vh) rotate(360deg)}}";document.head.appendChild(s);'; run(); addMsg("Confetti added! 🎉 Refresh preview."); } else { addMsg("I can do: sunset, ocean, bubblegum, forest, midnight, barbie, confetti. Try one!"); } prompt.value=''; };
-document.querySelectorAll('.quick button').forEach(b=>b.onclick=()=>{ let c=b.dataset.c; addMsg(c,'user'); recolor(c); });
-prompt.onkeydown=e=>{ if(e.key==='Enter') document.getElementById('aiSend').click(); };
-document.getElementById('download').onclick=()=>{ let blob=new Blob([`<!DOCTYPE html><html><head><style>${cssEl.value}<\/style><\/head><body>${htmlEl.value}<script>${jsEl.value}<\/script><\/body><\/html>`],{type:'text/html'}); let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='pretty-timer.html'; a.click(); };
-document.getElementById('theme').onclick=()=>document.body.classList.toggle('light');
-</script>
+        <div class="ai-section-title">THEME SHIFTERS</div>
+        <div class="theme-quick-grid">
+          <button data-c="sunset">🌅 Sunset</button>
+          <button data-c="ocean">🌊 Ocean</button>
+          <button data-c="bubblegum">🍬 Bubblegum</button>
+          <button data-c="forest">🌿 Forest</button>
+          <button data-c="midnight">🌌 Midnight</button>
+          <button data-c="barbie">💅 Barbie</button>
+        </div>
+
+        <!-- Optional API Key Drawer -->
+        <div class="api-key-box">
+          <label for="apiKey">Optional AI API Key (OpenAI/Gemini):</label>
+          <input type="password" id="apiKey" placeholder="sk-...">
+          <small>Leave blank to use built-in offline Copilot.</small>
+        </div>
+      </aside>
+
+      <!-- AI Main Chat Window -->
+      <section class="ai-chat-window">
+        <div class="ai-chat-header">
+          <div class="ai-status"><span class="status-dot"></span> Copilot Ready</div>
+          <button id="clearChatBtn" class="secondary-btn">Clear Chat</button>
+        </div>
+
+        <!-- Chat History Container -->
+        <div id="aiChatStudio" class="ai-chat-body">
+          <div class="ai-msg">
+            <div class="msg-author">✦ Copilot</div>
+            Hey Festim! What are we building in today's 4-hour ritual? Ask me to generate UI components, fix code, or re-theme your app!
+          </div>
+        </div>
+
+        <!-- Chat Input Bar -->
+        <div class="ai-input-wrapper">
+          <textarea id="aiStudioPrompt" rows="2" placeholder="Ask AI to write code, generate layouts, or fix bugs... (Press Enter to send)"></textarea>
+          <button id="aiStudioSend">Generate ↗</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    Built with love in Lagos • 4h everyday • <span id="history">Sessions Completed: 0</span>
+  </footer>
+
+  <audio id="ding" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+
+  <script src="script.js"></script>
 </body>
 </html>
