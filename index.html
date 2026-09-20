@@ -1,71 +1,119 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>TASKKILLER</title>
-<style>
-  body {
-    background: #0f0f0f;
-    color: white;
-    font-family: sans-serif;
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-  }
-  h1 {
-    letter-spacing: 3px;
-    text-align: center;
-  }
-  #input {
-    width: 100%;
-    padding: 15px;
-    background: #1e1e1e;
-    border: 1px solid #333;
-    color: white;
-    border-radius: 10px;
-    outline: none;
-  }
-  li {
-    background: #1e1e1e;
-    padding: 12px;
-    margin-top: 10px;
-    border-radius: 8px;
-    list-style: none;
-  }
-  ul { padding: 0; }
-</style>
+<title>FESTIMO // PRO LAB</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
 </head>
-<body> <h1>TASKKILLER</h1>
-<input id="input" placeholder=" What to kill today?">
-<ul id="list"></ul>
-<script>
-  const input = document.getElementById('input');
-  const list = document.getElementById('list');
-  
-  // 1. Load saved tasks or empty array
-  let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  
-  // 2. Function to show tasks on screen
-  function showTasks(){
-    list.innerHTML = '';
-    tasks.forEach(function(task){
-      let li = document.createElement('li');
-      li.textContent = task;
-      list.appendChild(li);
-    });
-  }
-  
-  // 3. Show on start
-  showTasks();
-  
-  // 4. Add new task
-  input.addEventListener('keydown', function(e){
-    if(e.key === 'Enter' && input.value !== ''){
-      tasks.push(input.value);
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-      showTasks();
-      input.value = '';
-    }
+<body>
+<div class="top">
+  <div class="brand">
+    <h2>FESTIMO_LAB</h2>
+    <div id="stats"><span id="streak">🔥 0</span> <span id="saves">💾 0</span></div>
+  </div>
+  <div class="top-right">
+    <div id="timer">04:00:00</div>
+    <div id="progress-wrap"><div id="progress"></div></div>
+    <button id="btn">▶ START</button>
+    <button id="focus">👁 FOCUS</button>
+    <button id="theme">☀️</button>
+  </div>
+</div>
+
+<div class="toolbar">
+  <div class="tabs">
+    <button class="tab active" data-tab="html">HTML</button>
+    <button class="tab" data-tab="css">CSS</button>
+    <button class="tab" data-tab="js">JS</button>
+  </div>
+  <div class="tools">
+    <label><input type="checkbox" id="autorun" checked> Auto-run</label>
+    <button id="run">RUN ▶</button>
+    <button id="beautify">✨ Format</button>
+    <button id="download">⬇ Export</button>
+    <button id="share">🔗 Share</button>
+    <button id="fullscreen">⛶ Preview</button>
+    <button id="resetTimer">Reset</button>
+  </div>
+</div>
+
+<div class="main">
+  <div class="editor">
+    <textarea id="html" class="code active" placeholder="HTML here"><div class="card">
+  <h1>TaskKiller PRO 🔥</h1>
+  <p>I code for 4 hours. No excuses.</p>
+  <button id="action">Kill Task</button>
+  <div class="tasks">
+    <div class="task">Learn Grid</div>
+    <div class="task">Build Portfolio</div>
+  </div>
+</div></textarea>
+    <textarea id="css" class="code" placeholder="CSS here">*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui;background:#0a0a0a;color:white;min-height:100vh;display:grid;place-items:center}
+.card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);padding:30px;border-radius:20px;backdrop-filter:blur(10px);max-width:380px;width:90%}
+h1{font-size:28px;margin-bottom:8px}
+p{opacity:0.6;margin-bottom:16px}
+#action{background:white;color:black;border:none;padding:10px 20px;border-radius:20px;font-weight:800;cursor:pointer;margin-bottom:16px}
+.tasks{display:flex;flex-direction:column;gap:8px}
+.task{background:rgba(255,255,255,0.08);padding:10px 14px;border-radius:10px}</textarea>
+    <textarea id="js" class="code" placeholder="JS here">document.getElementById('action').onclick = () => {
+  console.log("Task Killed! 💀");
+  document.querySelector('h1').innerText = "Task Killed! ✅";
+  document.querySelectorAll('.task').forEach(t => {
+    t.style.textDecoration = 'line-through';
+    t.style.opacity = '0.4';
   });
+}
+console.log("Lab loaded - lets goo");</textarea>
+    <div id="console"><div class="console-head">CONSOLE <button id="clearConsole">clear</button></div><div id="logs">> ready...</div></div>
+  </div>
+  <div class="preview-wrap" id="previewWrap">
+    <div class="preview-head">LIVE PREVIEW <span id="status">Ready</span> <button id="closeFull">✕</button></div>
+    <iframe id="preview"></iframe>
+    <div id="historyWrap"><h4>History</h4><div id="history"></div></div>
+  </div>
+</div>
+
+<audio id="ding" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+<script>
+let TOTAL=4*60*60, time=localStorage.getItem('timeLeft')?parseInt(localStorage.getItem('timeLeft')):TOTAL;
+let timerEl=document.getElementById('timer'), btn=document.getElementById('btn'), progress=document.getElementById('progress'), historyEl=document.getElementById('history'), ding=document.getElementById('ding'), statusEl=document.getElementById('status');
+let running=false, interval, streak=parseInt(localStorage.getItem('streak')||0), saves=parseInt(localStorage.getItem('saves')||0);
+document.getElementById('streak').innerText=`🔥 ${streak}`; document.getElementById('saves').innerText=`💾 ${saves}`;
+function render(){ let h=Math.floor(time/3600),m=Math.floor((time%3600)/60),s=time%60; timerEl.innerText=String(h).padStart(2,'0')+":"+String(m).padStart(2,'0')+":"+String(s).padStart(2,'0'); progress.style.width=((TOTAL-time)/TOTAL*100)+"%"; localStorage.setItem('timeLeft',time); }
+render();
+function loadHistory(){ let h=JSON.parse(localStorage.getItem('codeHistory')||"[]"); historyEl.innerHTML=h.map(x=>`<div class="h-item">${x}</div>`).join('')||"<p class='dim'>No sessions</p>"; }
+loadHistory();
+btn.onclick=()=>{
+  if(!running){ running=true; btn.innerText="⏸ STOP"; statusEl.innerText="LOCKED IN 🔒"; interval=setInterval(()=>{ time--; render(); if(time<=0){ clearInterval(interval); running=false; ding.play(); let hist=JSON.parse(localStorage.getItem('codeHistory')||"[]"); hist.unshift("✅ Finished 4h - "+new Date().toLocaleDateString()); localStorage.setItem('codeHistory',JSON.stringify(hist)); streak++; localStorage.setItem('streak',streak); document.getElementById('streak').innerText=`🔥 ${streak}`; loadHistory(); time=TOTAL; render(); btn.innerText="▶ START"; } },1000); }
+  else{ running=false; btn.innerText="▶ START"; clearInterval(interval); let hist=JSON.parse(localStorage.getItem('codeHistory')||"[]"); hist.unshift("⏸ Paused at "+(TOTAL-time)+"s - "+new Date().toLocaleTimeString()); localStorage.setItem('codeHistory',JSON.stringify(hist)); loadHistory(); statusEl.innerText="Paused"; }
+};
+document.getElementById('resetTimer').onclick=()=>{ time=TOTAL; render(); clearInterval(interval); running=false; btn.innerText="▶ START"; };
+let htmlEl=document.getElementById('html'), cssEl=document.getElementById('css'), jsEl=document.getElementById('js'), preview=document.getElementById('preview'), logs=document.getElementById('logs');
+let tabs=document.querySelectorAll('.tab'), codes=document.querySelectorAll('.code');
+tabs.forEach(t=>t.onclick=()=>{ tabs.forEach(x=>x.classList.remove('active')); codes.forEach(c=>c.classList.remove('active')); t.classList.add('active'); document.getElementById(t.dataset.tab).classList.add('active'); });
+function run(){
+  let html=htmlEl.value, css=`<style>${cssEl.value}<\/style>`, js=jsEl.value;
+  let bridge=`<script>const _log=console.log; console.log=(...a)=>{ parent.postMessage({type:'log', msg:a.join(' ')},'*'); _log(...a); }; window.onerror=(e)=>parent.postMessage({type:'log', msg:'❌ '+e},'*');<\/script>`;
+  preview.srcdoc=css+html+bridge+`<script>${js}<\/script>`;
+  logs.innerHTML+="> running...<br>"; logs.scrollTop=logs.scrollHeight;
+  localStorage.setItem('lab_html',html); localStorage.setItem('lab_css',cssEl.value); localStorage.setItem('lab_js',js); saves++; localStorage.setItem('saves',saves); document.getElementById('saves').innerText=`💾 ${saves}`;
+}
+if(localStorage.getItem('lab_html')){ htmlEl.value=localStorage.getItem('lab_html'); cssEl.value=localStorage.getItem('lab_css'); jsEl.value=localStorage.getItem('lab_js'); }
+run();
+let autorun=document.getElementById('autorun');
+[htmlEl,cssEl,jsEl].forEach(el=>el.addEventListener('input',()=>{ if(autorun.checked) run(); }));
+document.getElementById('run').onclick=run;
+document.getElementById('clearConsole').onclick=()=>logs.innerHTML="> cleared<br>";
+document.getElementById('beautify').onclick=()=>{ [htmlEl,cssEl,jsEl].forEach(e=>e.value=e.value.trim()); run(); logs.innerHTML+="> ✨ formatted<br>"; };
+document.getElementById('download').onclick=()=>{ let blob=new Blob([`<!DOCTYPE html><html><head><style>${cssEl.value}<\/style><\/head><body>${htmlEl.value}<script>${jsEl.value}<\/script><\/body><\/html>`],{type:'text/html'}); let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='festimo-lab.html'; a.click(); };
+document.getElementById('share').onclick=async()=>{ let url=location.href; if(navigator.share){ await navigator.share({title:'FESTIMO LAB', url}); } else { await navigator.clipboard.writeText(url); logs.innerHTML+="> 🔗 link copied<br>"; } };
+document.getElementById('fullscreen').onclick=()=>{ document.getElementById('previewWrap').classList.add('full'); };
+document.getElementById('closeFull').onclick=()=>{ document.getElementById('previewWrap').classList.remove('full'); };
+document.getElementById('focus').onclick=(e)=>{ document.body.classList.toggle('focus'); e.target.innerText=document.body.classList.contains('focus')?"👁 EXIT":"👁 FOCUS"; };
+window.addEventListener('message',e=>{ if(e.data.type==='log'){ logs.innerHTML+=e.data.msg+"<br>"; logs.scrollTop=logs.scrollHeight; } });
+document.getElementById('theme').onclick=(e)=>{ document.body.classList.toggle('light'); localStorage.setItem('theme',document.body.classList.contains('light')?'light':'dark'); e.target.innerText=document.body.classList.contains('light')?"🌙":"☀️"; };
+if(localStorage.getItem('theme')=='light'){ document.body.classList.add('light'); document.getElementById('theme').innerText="🌙"; }
 </script>
 </body>
 </html>
