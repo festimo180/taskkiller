@@ -1,119 +1,154 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>FESTIMO // PRO LAB</title>
+<title>FESTIMO // PRO LAB+</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="top">
-  <div class="brand">
-    <h2>FESTIMO_LAB</h2>
-    <div id="stats"><span id="streak">🔥 0</span> <span id="saves">💾 0</span></div>
-  </div>
-  <div class="top-right">
+<div class="bg"></div>
+<header>
+  <div class="logo">FESTIMO<span>_LAB</span> <div class="live">● LIVE</div></div>
+  <div class="center">
     <div id="timer">04:00:00</div>
-    <div id="progress-wrap"><div id="progress"></div></div>
-    <button id="btn">▶ START</button>
-    <button id="focus">👁 FOCUS</button>
+    <div class="progress"><div id="progress"></div></div>
+  </div>
+  <div class="actions">
+    <button id="btn" class="primary">▶ START FOCUS</button>
     <button id="theme">☀️</button>
   </div>
-</div>
+</header>
 
-<div class="toolbar">
-  <div class="tabs">
-    <button class="tab active" data-tab="html">HTML</button>
-    <button class="tab" data-tab="css">CSS</button>
-    <button class="tab" data-tab="js">JS</button>
-  </div>
-  <div class="tools">
-    <label><input type="checkbox" id="autorun" checked> Auto-run</label>
-    <button id="run">RUN ▶</button>
-    <button id="beautify">✨ Format</button>
-    <button id="download">⬇ Export</button>
-    <button id="share">🔗 Share</button>
-    <button id="fullscreen">⛶ Preview</button>
-    <button id="resetTimer">Reset</button>
-  </div>
-</div>
-
-<div class="main">
-  <div class="editor">
-    <textarea id="html" class="code active" placeholder="HTML here"><div class="card">
-  <h1>TaskKiller PRO 🔥</h1>
-  <p>I code for 4 hours. No excuses.</p>
-  <button id="action">Kill Task</button>
-  <div class="tasks">
-    <div class="task">Learn Grid</div>
-    <div class="task">Build Portfolio</div>
-  </div>
+<div class="layout">
+  <div class="editor-panel">
+    <div class="tabs">
+      <button class="tab active" data-tab="html"><i>◧</i> HTML</button>
+      <button class="tab" data-tab="css"><i>◨</i> CSS</button>
+      <button class="tab" data-tab="js"><i>◩</i> JS</button>
+      <div class="tab-tools">
+        <label><input type="checkbox" id="autorun" checked> auto</label>
+        <button id="run">Run</button>
+      </div>
+    </div>
+    <textarea id="html" class="code active"><div class="app">
+  <h1>Build the future.</h1>
+  <p>This lab was built by Festim. 4 hours of deep work.</p>
+  <button id="magic">Make it magic ✨</button>
+  <div id="grid"></div>
 </div></textarea>
-    <textarea id="css" class="code" placeholder="CSS here">*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:system-ui;background:#0a0a0a;color:white;min-height:100vh;display:grid;place-items:center}
-.card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);padding:30px;border-radius:20px;backdrop-filter:blur(10px);max-width:380px;width:90%}
-h1{font-size:28px;margin-bottom:8px}
-p{opacity:0.6;margin-bottom:16px}
-#action{background:white;color:black;border:none;padding:10px 20px;border-radius:20px;font-weight:800;cursor:pointer;margin-bottom:16px}
-.tasks{display:flex;flex-direction:column;gap:8px}
-.task{background:rgba(255,255,255,0.08);padding:10px 14px;border-radius:10px}</textarea>
-    <textarea id="js" class="code" placeholder="JS here">document.getElementById('action').onclick = () => {
-  console.log("Task Killed! 💀");
-  document.querySelector('h1').innerText = "Task Killed! ✅";
-  document.querySelectorAll('.task').forEach(t => {
-    t.style.textDecoration = 'line-through';
-    t.style.opacity = '0.4';
-  });
+    <textarea id="css" class="code">*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui;background:#0a0a0a;color:#fff;min-height:100vh;display:grid;place-items:center}
+.app{max-width:520px;width:90%;background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.1);padding:32px;border-radius:24px;backdrop-filter:blur(20px)}
+h1{font-size:36px;letter-spacing:-1px;margin-bottom:12px}
+p{opacity:0.6;margin-bottom:20px;line-height:1.5}
+#magic{background:#fff;color:#000;border:none;padding:12px 22px;border-radius:100px;font-weight:800;cursor:pointer;transition:0.2s}
+#magic:hover{transform:scale(1.05)}
+#grid{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.box{background:rgba(255,255,255,0.06);padding:16px;border-radius:14px;border:1px solid rgba(255,255,255,0.06)}</textarea>
+    <textarea id="js" class="code">const grid = document.getElementById('grid');
+const items = ['⚡️ Fast', '🎨 Beautiful', '🧠 Smart', '🚀 Ship'];
+grid.innerHTML = items.map(i => `<div class="box">${i}</div>`).join('');
+
+document.getElementById('magic').onclick = () => {
+  document.querySelector('h1').innerText = "You did magic! ✨";
+  console.log("Festim is locked in!");
+  grid.innerHTML += `<div class="box">🔥 Focus Mode</div>`;
 }
-console.log("Lab loaded - lets goo");</textarea>
-    <div id="console"><div class="console-head">CONSOLE <button id="clearConsole">clear</button></div><div id="logs">> ready...</div></div>
+
+console.log("Welcome to FESTIMO LAB+");
+</textarea>
+    <div class="console"><div class="c-head">console <button id="clearConsole">clear</button></div><div id="logs">> ready to build...</div></div>
   </div>
-  <div class="preview-wrap" id="previewWrap">
-    <div class="preview-head">LIVE PREVIEW <span id="status">Ready</span> <button id="closeFull">✕</button></div>
-    <iframe id="preview"></iframe>
-    <div id="historyWrap"><h4>History</h4><div id="history"></div></div>
+
+  <div class="right">
+    <div class="preview-card">
+      <div class="p-head">Preview <span id="status">● live</span> <div><button id="fullscreen">⛶</button><button id="download">⬇</button></div></div>
+      <iframe id="preview"></iframe>
+    </div>
+
+    <div class="ai-card">
+      <div class="ai-head">🤖 FESTIMO AI <span>helper</span><button id="aiClear">new</button></div>
+      <div id="aiChat"><div class="ai-msg">Hey Festim! I'm your coding AI. Ask me to explain, fix, or build anything in your preview. Try: <b>"make it dark mode"</b> or <b>"add animation"</b></div></div>
+      <div class="ai-input">
+        <input id="aiPrompt" placeholder="Ask AI: make it neon, add 3d, fix bug...">
+        <button id="aiSend">↗</button>
+      </div>
+      <div class="ai-quick">
+        <button data-q="Explain my code">Explain</button>
+        <button data-q="Make this design more premium and modern">Make premium</button>
+        <button data-q="Add cool animations">Animate</button>
+        <button data-q="Fix any bugs and improve JS">Fix bugs</button>
+      </div>
+    </div>
   </div>
 </div>
 
 <audio id="ding" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
 <script>
+// TIMER
 let TOTAL=4*60*60, time=localStorage.getItem('timeLeft')?parseInt(localStorage.getItem('timeLeft')):TOTAL;
-let timerEl=document.getElementById('timer'), btn=document.getElementById('btn'), progress=document.getElementById('progress'), historyEl=document.getElementById('history'), ding=document.getElementById('ding'), statusEl=document.getElementById('status');
-let running=false, interval, streak=parseInt(localStorage.getItem('streak')||0), saves=parseInt(localStorage.getItem('saves')||0);
-document.getElementById('streak').innerText=`🔥 ${streak}`; document.getElementById('saves').innerText=`💾 ${saves}`;
+let timerEl=document.getElementById('timer'), progress=document.getElementById('progress'), btn=document.getElementById('btn'), ding=document.getElementById('ding'), statusEl=document.getElementById('status');
+let running=false, interval;
 function render(){ let h=Math.floor(time/3600),m=Math.floor((time%3600)/60),s=time%60; timerEl.innerText=String(h).padStart(2,'0')+":"+String(m).padStart(2,'0')+":"+String(s).padStart(2,'0'); progress.style.width=((TOTAL-time)/TOTAL*100)+"%"; localStorage.setItem('timeLeft',time); }
 render();
-function loadHistory(){ let h=JSON.parse(localStorage.getItem('codeHistory')||"[]"); historyEl.innerHTML=h.map(x=>`<div class="h-item">${x}</div>`).join('')||"<p class='dim'>No sessions</p>"; }
-loadHistory();
 btn.onclick=()=>{
-  if(!running){ running=true; btn.innerText="⏸ STOP"; statusEl.innerText="LOCKED IN 🔒"; interval=setInterval(()=>{ time--; render(); if(time<=0){ clearInterval(interval); running=false; ding.play(); let hist=JSON.parse(localStorage.getItem('codeHistory')||"[]"); hist.unshift("✅ Finished 4h - "+new Date().toLocaleDateString()); localStorage.setItem('codeHistory',JSON.stringify(hist)); streak++; localStorage.setItem('streak',streak); document.getElementById('streak').innerText=`🔥 ${streak}`; loadHistory(); time=TOTAL; render(); btn.innerText="▶ START"; } },1000); }
-  else{ running=false; btn.innerText="▶ START"; clearInterval(interval); let hist=JSON.parse(localStorage.getItem('codeHistory')||"[]"); hist.unshift("⏸ Paused at "+(TOTAL-time)+"s - "+new Date().toLocaleTimeString()); localStorage.setItem('codeHistory',JSON.stringify(hist)); loadHistory(); statusEl.innerText="Paused"; }
+  if(!running){ running=true; btn.innerText="⏸ STOP"; statusEl.innerText="● locked in"; interval=setInterval(()=>{ time--; render(); if(time<=0){ clearInterval(interval); running=false; ding.play(); btn.innerText="▶ DONE!"; } },1000); }
+  else{ running=false; btn.innerText="▶ START FOCUS"; clearInterval(interval); statusEl.innerText="● paused"; }
 };
-document.getElementById('resetTimer').onclick=()=>{ time=TOTAL; render(); clearInterval(interval); running=false; btn.innerText="▶ START"; };
+
+// EDITOR + PREVIEW
 let htmlEl=document.getElementById('html'), cssEl=document.getElementById('css'), jsEl=document.getElementById('js'), preview=document.getElementById('preview'), logs=document.getElementById('logs');
-let tabs=document.querySelectorAll('.tab'), codes=document.querySelectorAll('.code');
-tabs.forEach(t=>t.onclick=()=>{ tabs.forEach(x=>x.classList.remove('active')); codes.forEach(c=>c.classList.remove('active')); t.classList.add('active'); document.getElementById(t.dataset.tab).classList.add('active'); });
+let tabs=document.querySelectorAll('.tab');
+tabs.forEach(t=>t.onclick=()=>{ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); document.querySelectorAll('.code').forEach(c=>c.classList.remove('active')); t.classList.add('active'); document.getElementById(t.dataset.tab).classList.add('active'); });
 function run(){
-  let html=htmlEl.value, css=`<style>${cssEl.value}<\/style>`, js=jsEl.value;
-  let bridge=`<script>const _log=console.log; console.log=(...a)=>{ parent.postMessage({type:'log', msg:a.join(' ')},'*'); _log(...a); }; window.onerror=(e)=>parent.postMessage({type:'log', msg:'❌ '+e},'*');<\/script>`;
-  preview.srcdoc=css+html+bridge+`<script>${js}<\/script>`;
-  logs.innerHTML+="> running...<br>"; logs.scrollTop=logs.scrollHeight;
-  localStorage.setItem('lab_html',html); localStorage.setItem('lab_css',cssEl.value); localStorage.setItem('lab_js',js); saves++; localStorage.setItem('saves',saves); document.getElementById('saves').innerText=`💾 ${saves}`;
+  let bridge=`<script>const _log=console.log; console.log=(...a)=>{ parent.postMessage({type:'log', msg:a.join(' ')},'*'); _log(...a); }; window.onerror=e=>parent.postMessage({type:'log', msg:'❌ '+e},'*');<\/script>`;
+  preview.srcdoc=`<style>${cssEl.value}<\/style>${htmlEl.value}${bridge}<script>${jsEl.value}<\/script>`;
+  localStorage.setItem('lab_html',htmlEl.value); localStorage.setItem('lab_css',cssEl.value); localStorage.setItem('lab_js',jsEl.value);
 }
 if(localStorage.getItem('lab_html')){ htmlEl.value=localStorage.getItem('lab_html'); cssEl.value=localStorage.getItem('lab_css'); jsEl.value=localStorage.getItem('lab_js'); }
 run();
-let autorun=document.getElementById('autorun');
-[htmlEl,cssEl,jsEl].forEach(el=>el.addEventListener('input',()=>{ if(autorun.checked) run(); }));
 document.getElementById('run').onclick=run;
-document.getElementById('clearConsole').onclick=()=>logs.innerHTML="> cleared<br>";
-document.getElementById('beautify').onclick=()=>{ [htmlEl,cssEl,jsEl].forEach(e=>e.value=e.value.trim()); run(); logs.innerHTML+="> ✨ formatted<br>"; };
-document.getElementById('download').onclick=()=>{ let blob=new Blob([`<!DOCTYPE html><html><head><style>${cssEl.value}<\/style><\/head><body>${htmlEl.value}<script>${jsEl.value}<\/script><\/body><\/html>`],{type:'text/html'}); let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='festimo-lab.html'; a.click(); };
-document.getElementById('share').onclick=async()=>{ let url=location.href; if(navigator.share){ await navigator.share({title:'FESTIMO LAB', url}); } else { await navigator.clipboard.writeText(url); logs.innerHTML+="> 🔗 link copied<br>"; } };
-document.getElementById('fullscreen').onclick=()=>{ document.getElementById('previewWrap').classList.add('full'); };
-document.getElementById('closeFull').onclick=()=>{ document.getElementById('previewWrap').classList.remove('full'); };
-document.getElementById('focus').onclick=(e)=>{ document.body.classList.toggle('focus'); e.target.innerText=document.body.classList.contains('focus')?"👁 EXIT":"👁 FOCUS"; };
-window.addEventListener('message',e=>{ if(e.data.type==='log'){ logs.innerHTML+=e.data.msg+"<br>"; logs.scrollTop=logs.scrollHeight; } });
-document.getElementById('theme').onclick=(e)=>{ document.body.classList.toggle('light'); localStorage.setItem('theme',document.body.classList.contains('light')?'light':'dark'); e.target.innerText=document.body.classList.contains('light')?"🌙":"☀️"; };
-if(localStorage.getItem('theme')=='light'){ document.body.classList.add('light'); document.getElementById('theme').innerText="🌙"; }
+document.getElementById('autorun').onchange=e=>{ if(e.target.checked) run(); };
+[htmlEl,cssEl,jsEl].forEach(el=>el.addEventListener('input',()=>{ if(document.getElementById('autorun').checked) run(); }));
+window.addEventListener('message',e=>{ if(e.data.type==='log'){ logs.innerHTML+=`<div>> ${e.data.msg}</div>`; logs.scrollTop=logs.scrollHeight; } });
+document.getElementById('clearConsole').onclick=()=>logs.innerHTML="> cleared";
+
+// AI ASSISTANT (local smart)
+let chat=document.getElementById('aiChat'), prompt=document.getElementById('aiPrompt');
+function addMsg(txt, who='ai'){ let d=document.createElement('div'); d.className=who==='user'?'user-msg':'ai-msg'; d.innerHTML=txt; chat.appendChild(d); chat.scrollTop=chat.scrollHeight; }
+function aiThink(q){
+  q=q.toLowerCase();
+  let h=htmlEl.value, c=cssEl.value, j=jsEl.value;
+  if(q.includes('explain')){
+    addMsg(`<b>Your code:</b><br>- HTML has ${h.length} chars, a card + grid<br>- CSS is glassmorphism dark theme<br>- JS builds 4 boxes + magic button<br><br>It's clean! Want me to make it more premium?`);
+  } else if(q.includes('dark') || q.includes('light')){
+    cssEl.value=c.replace(/background:[^;]+;?/, 'background:#000;') + "\nbody{filter:invert(0)}"; run(); addMsg("Done - toggled to pure dark premium. Check preview.");
+  } else if(q.includes('premium') || q.includes('modern') || q.includes('beautiful')){
+    cssEl.value=`*{margin:0;padding:0;box-sizing:border-box} body{font-family:Inter,system-ui;background:radial-gradient(1200px at 20% -10%, #a78bfa22, transparent), #050507;color:#fff;min-height:100vh;display:grid;place-items:center} .app{max-width:560px;width:92%;background:linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));border:1px solid rgba(255,255,255,0.12);padding:36px;border-radius:28px;backdrop-filter:blur(30px);box-shadow:0 20px 60px rgba(0,0,0,0.5)} h1{font-size:42px;letter-spacing:-2px;margin-bottom:12px;background:linear-gradient(90deg,#fff,#aaa);-webkit-background-clip:text;-webkit-text-fill-color:transparent} p{opacity:0.6;margin-bottom:22px;line-height:1.6} #magic{background:linear-gradient(90deg,#fff,#e5e5e5);color:#000;border:none;padding:12px 24px;border-radius:100px;font-weight:900;cursor:pointer;box-shadow:0 8px 20px rgba(255,255,255,0.2)} #grid{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:12px} .box{background:rgba(255,255,255,0.06);padding:18px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);transition:0.2s} .box:hover{transform:translateY(-2px);background:rgba(255,255,255,0.1)}`; run(); addMsg("Made it ultra premium - glass + gradient + hover effects ✨");
+  } else if(q.includes('anim')){
+    jsEl.value=j+`\n\n// AI added animation\ndocument.querySelectorAll('.box').forEach((b,i)=>{ b.style.animation = \`pop 0.6s \${i*0.1}s both\`; });\nlet style=document.createElement('style'); style.innerHTML='@keyframes pop{from{opacity:0;transform:translateY(20px) scale(0.9)}to{opacity:1;transform:translateY(0) scale(1)}}'; document.head.appendChild(style);`; cssEl.value=c+" \n.box{animation: pop 0.6s both} @keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}"; run(); addMsg("Added smooth pop animations! Reload preview to see.");
+  } else if(q.includes('fix') || q.includes('bug')){
+    try{ eval(jsEl.value); addMsg("Checked - no JS errors found. Code looks good ✅"); } catch(e){ addMsg("Found bug: "+e.message+" - I suggest wrapping your code in try/catch."); }
+  } else if(q.includes('neon') || q.includes('glow')){
+    cssEl.value=c+"\n.app{box-shadow:0 0 40px #a78bfa55, inset 0 0 0 1px #a78bfa44} h1{text-shadow:0 0 20px #a78bfa} .box{box-shadow:0 0 20px rgba(167,139,250,0.15)}"; run(); addMsg("Neon glow added 💜");
+  } else if(q.includes('3d') || q.includes('card')){
+    cssEl.value=c+"\n.app{transform:perspective(1000px) rotateX(2deg); transform-style:preserve-3d} .app:hover{transform:perspective(1000px) rotateX(0deg) rotateY(-2deg)}"; run(); addMsg("Added 3D tilt effect - hover the card!");
+  } else {
+    // generic build
+    if(q.length>5){
+      htmlEl.value+=`\n<div class="box">🤖 AI: ${prompt.value}</div>`; run(); addMsg(`Added your idea "${q}" to the preview. Tell me to make it premium if you want!`);
+    } else { addMsg("Tell me what to build - like 'make it neon', 'add pricing table', 'add dark mode'"); }
+  }
+}
+document.getElementById('aiSend').onclick=()=>{ let q=prompt.value.trim(); if(!q) return; addMsg(q,'user'); prompt.value=''; setTimeout(()=>aiThink(q),400); };
+prompt.onkeydown=e=>{ if(e.key==='Enter') document.getElementById('aiSend').click(); };
+document.querySelectorAll('.ai-quick button').forEach(b=>b.onclick=()=>{ let q=b.dataset.q; addMsg(q,'user'); aiThink(q); });
+document.getElementById('aiClear').onclick=()=>{ chat.innerHTML='<div class="ai-msg">Cleared! What should we build?</div>'; };
+
+document.getElementById('fullscreen').onclick=()=>document.querySelector('.preview-card').classList.toggle('full');
+document.getElementById('download').onclick=()=>{ let blob=new Blob([`<!DOCTYPE html><html><head><style>${cssEl.value}<\/style><\/head><body>${htmlEl.value}<script>${jsEl.value}<\/script><\/body><\/html>`],{type:'text/html'}); let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='festimo-pro.html'; a.click(); };
+document.getElementById('theme').onclick=e=>{ document.body.classList.toggle('light'); localStorage.setItem('theme',document.body.classList.contains('light')?'light':'dark'); e.target.innerText=document.body.classList.contains('light')?'🌙':'☀️'; };
+if(localStorage.getItem('theme')=='light'){ document.body.classList.add('light'); document.getElementById('theme').innerText='🌙'; }
 </script>
 </body>
 </html>
