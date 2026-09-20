@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TASKKILLER</title>
+<style>
+  body {
+    background: #0f0f0f;
+    color: white;
+    font-family: sans-serif;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+  }
+  h1 {
+    letter-spacing: 3px;
+    text-align: center;
+  }
+  #input {
+    width: 100%;
+    padding: 15px;
+    background: #1e1e1e;
+    border: 1px solid #333;
+    color: white;
+    border-radius: 10px;
+    outline: none;
+  }
+  li {
+    background: #1e1e1e;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    list-style: none;
+  }
+  ul { padding: 0; }
+</style>
+</head>
+<body> <h1>TASKKILLER</h1>
+<input id="input" placeholder=" What to kill today?">
+<ul id="list"></ul>
+<script>
+  const input = document.getElementById('input');
+  const list = document.getElementById('list');
+  
+  // 1. Load saved tasks or empty array
+  let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  
+  // 2. Function to show tasks on screen
+  function showTasks(){
+    list.innerHTML = '';
+    tasks.forEach(function(task){
+      let li = document.createElement('li');
+      li.textContent = task;
+      list.appendChild(li);
+    });
+  }
+  
+  // 3. Show on start
+  showTasks();
+  
+  // 4. Add new task
+  input.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' && input.value !== ''){
+      tasks.push(input.value);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      showTasks();
+      input.value = '';
+    }
+  });
+</script>
+</body>
+</html>
